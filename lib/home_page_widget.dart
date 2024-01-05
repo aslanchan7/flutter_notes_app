@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:first_desktop_app/editing_note_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +14,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Add note with floating action button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -24,7 +27,40 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         tooltip: "Add Note",
         child: const Icon(Icons.add),
       ),
-      body: const Center(child: Text("Home Page")),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 29),
+            alignment: Alignment.centerLeft,
+            height: 50,
+            child: const Text(
+              "All Notes",
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+              // Either grid view or list view (yet to decide)
+              child: GridView.builder(
+                itemCount: 12,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200, childAspectRatio: 0.75),
+                itemBuilder: (context, index) => Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: const EdgeInsets.all(4),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

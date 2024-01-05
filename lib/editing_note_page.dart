@@ -9,30 +9,51 @@ class EditingNotePage extends StatefulWidget {
 }
 
 class _EditingNotePageState extends State<EditingNotePage> {
-  QuillController _controller = QuillController.basic();
+  final QuillController _controller = QuillController.basic();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.deepPurple.shade100,
+        title: const TextField(
+          textAlignVertical: TextAlignVertical.top,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: "(No title)",
+          ),
+        ),
+      ),
       body: Column(
         children: [
-          QuillToolbar.simple(
-            configurations: QuillSimpleToolbarConfigurations(
-              controller: _controller,
-              showSearchButton: false,
-              showLink: false,
-              showQuote: false,
-              showHeaderStyle: false,
-              multiRowsDisplay: false,
-              showDividers: true,
+          Expanded(
+            flex: 1,
+            child: Container(
+              // padding: const EdgeInsets.only(bottom: 25),
+              child: QuillToolbar.simple(
+                configurations: QuillSimpleToolbarConfigurations(
+                  controller: _controller,
+                  showSearchButton: false,
+                  showLink: false,
+                  showQuote: false,
+                  showHeaderStyle: false,
+                  multiRowsDisplay: false,
+                  showDividers: true,
+                  color: Colors.deepPurple.shade100,
+                ),
+              ),
             ),
           ),
-          QuillEditor.basic(
-            configurations: QuillEditorConfigurations(
-              controller: _controller,
-              padding: const EdgeInsets.only(left: 25),
-              showCursor: true,
+          Expanded(
+            flex: 10,
+            child: Padding(
+              padding: const EdgeInsets.all(25.0),
+              child: QuillEditor.basic(
+                configurations: QuillEditorConfigurations(
+                  controller: _controller,
+                  showCursor: true,
+                ),
+              ),
             ),
           ),
         ],
