@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:first_desktop_app/editing_note_page.dart';
+import 'package:first_desktop_app/note_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomePageWidget extends StatefulWidget {
@@ -49,13 +50,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               child: GridView.builder(
                 itemCount: 12,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200, childAspectRatio: 0.75),
-                itemBuilder: (context, index) => Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: const EdgeInsets.all(4),
+                  maxCrossAxisExtent: 200,
+                  mainAxisSpacing: 50,
+                  childAspectRatio: 0.75,
                 ),
+                itemBuilder: (context, index) => NoteCard(),
               ),
             ),
           ),

@@ -46,12 +46,25 @@ class _EditingNotePageState extends State<EditingNotePage> {
           ),
           Expanded(
             flex: 10,
-            child: Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: QuillEditor.basic(
-                configurations: QuillEditorConfigurations(
-                  controller: _controller,
-                  showCursor: true,
+            child: Container(
+              width: MediaQuery.of(context).size.width > 1500
+                  ? 1500
+                  : MediaQuery.of(context).size.width,
+              margin: const EdgeInsets.only(left: 25, top: 25, right: 25),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                color: Colors.grey.shade200,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: QuillEditor.basic(
+                  configurations: QuillEditorConfigurations(
+                    controller: _controller,
+                    showCursor: true,
+                  ),
                 ),
               ),
             ),
