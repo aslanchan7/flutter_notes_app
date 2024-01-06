@@ -12,6 +12,12 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
+  bool isCurrentNotesGridView = true; // Bug fix here
+  void toggleNotesView() {
+    isCurrentNotesGridView = !isCurrentNotesGridView;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,32 +36,50 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       ),
       body: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 29),
-            alignment: Alignment.centerLeft,
-            height: 50,
-            child: const Text(
-              "All Notes",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  alignment: Alignment.centerLeft,
+                  height: 50,
+                  child: const Text(
+                    "All Notes",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: toggleNotesView,
+                  icon: isCurrentNotesGridView
+                      ? const Icon(Icons.grid_on)
+                      : const Icon(Icons.list_alt),
+                )
+              ],
             ),
           ),
           Expanded(
             child: Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
-              // Either grid view or list view (yet to decide)
-              child: GridView.builder(
-                itemCount: 12,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  mainAxisSpacing: 50,
-                  childAspectRatio: 0.75,
-                ),
-                itemBuilder: (context, index) => NoteCard(),
-              ),
+              child: isCurrentNotesGridView
+                  ? GridView.builder(
+                      itemCount: 12,
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 200,
+                        mainAxisSpacing: 50,
+                        childAspectRatio: 0.75,
+                      ),
+                      itemBuilder: (context, index) => NoteCardGrid(),
+                    )
+                  : ListView.builder(
+                      itemCount: 12,
+                      itemBuilder: (context, index) => NoteCardList(),
+                    ),
             ),
           ),
         ],

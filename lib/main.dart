@@ -39,6 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
     Text("Profile Page"),
   ];
 
+  bool sideBarActivated(BuildContext context) =>
+      MediaQuery.of(context).size.width >= 600;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -57,23 +60,21 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Row(
         children: [
-          // side bar
-          Flexible(
-            flex: 1,
-            child: Container(
-              constraints: const BoxConstraints(maxWidth: 200),
+          // Side Bar
+          if (sideBarActivated(context))
+            Container(
+              // constraints: const BoxConstraints(maxWidth: 200, minWidth: 100),
+              width: 200,
               color: Colors.deepPurple.shade50,
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
-                  const SizedBox(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-                      child: Text(
-                        "Navigation Panel",
-                        style: TextStyle(
-                            fontSize: 16.0, fontWeight: FontWeight.bold),
-                      ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
+                    child: const Text(
+                      "Navigation Panel",
+                      style: TextStyle(
+                          fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
                   ),
                   ListTile(
@@ -95,12 +96,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-          ),
 
-          //page content
+          // Page Content
           Expanded(
             flex: 5,
-            child: _widgetOptions[_selectedIndex],
+            child: Container(
+              child: _widgetOptions[_selectedIndex],
+            ),
           ),
         ],
       ),
