@@ -4,6 +4,7 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   irondash_engine_context
+  isar_flutter_libs
   super_native_extensions
   url_launcher_windows
 )
