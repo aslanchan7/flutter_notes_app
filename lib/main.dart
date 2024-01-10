@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/pages/home_page_widget.dart';
 import 'package:flutter/material.dart';

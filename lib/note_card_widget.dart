@@ -1,13 +1,21 @@
+import 'package:first_desktop_app/models/note.dart';
+import 'package:first_desktop_app/models/note_database.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NoteCardGrid extends StatefulWidget {
-  const NoteCardGrid({super.key});
+  final Note note;
+  const NoteCardGrid({super.key, required this.note});
 
   @override
   State<NoteCardGrid> createState() => _NoteCardGridState();
 }
 
 class _NoteCardGridState extends State<NoteCardGrid> {
+  void deleteNote(int id) {
+    context.read<NoteDatabase>().deleteNote(id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,6 +25,9 @@ class _NoteCardGridState extends State<NoteCardGrid> {
             width: 200,
             child: Card(
               child: InkWell(
+                onSecondaryTap: () {
+                  deleteNote(widget.note.id);
+                },
                 onTap: () {
                   print("Hello World");
                 },
@@ -24,7 +35,7 @@ class _NoteCardGridState extends State<NoteCardGrid> {
             ),
           ),
         ),
-        Text("Note Title"),
+        Text(widget.note.title),
       ],
     );
   }

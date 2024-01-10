@@ -1,5 +1,7 @@
+import 'package:first_desktop_app/models/note_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:provider/provider.dart';
 
 class EditingNotePage extends StatefulWidget {
   const EditingNotePage({super.key});
@@ -9,16 +11,35 @@ class EditingNotePage extends StatefulWidget {
 }
 
 class _EditingNotePageState extends State<EditingNotePage> {
-  final QuillController _controller = QuillController.basic();
+  final QuillController _quillController = QuillController.basic();
+  final TextEditingController _titleController = TextEditingController();
+
+  // create note
+  void createNote(String title, String text) {
+    // add to db
+    context.read<NoteDatabase>().addNote(title, text);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple.shade100,
-        title: const TextField(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            createNote(
+                _titleController.text == ""
+                    ? "No Title"
+                    : _titleController.text,
+                _quillController.getPlainText());
+            Navigator.pop(context);
+          },
+        ),
+        title: TextField(
+          controller: _titleController,
           textAlignVertical: TextAlignVertical.top,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: "(No title)",
           ),
@@ -32,7 +53,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
               // padding: const EdgeInsets.only(bottom: 25),
               child: QuillToolbar.simple(
                 configurations: QuillSimpleToolbarConfigurations(
-                  controller: _controller,
+                  controller: _quillController,
                   showSearchButton: false,
                   showLink: false,
                   showQuote: false,
@@ -62,7 +83,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                 padding: const EdgeInsets.all(25.0),
                 child: QuillEditor.basic(
                   configurations: QuillEditorConfigurations(
-                    controller: _controller,
+                    controller: _quillController,
                     showCursor: true,
                   ),
                 ),
