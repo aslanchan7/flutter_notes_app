@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:first_desktop_app/editing_note_page.dart';
+import 'package:first_desktop_app/pages/editing_note_page.dart';
 import 'package:first_desktop_app/note_card_widget.dart';
 import 'package:flutter/material.dart';
 

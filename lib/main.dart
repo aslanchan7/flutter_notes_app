@@ -1,9 +1,20 @@
-import 'package:first_desktop_app/home_page_widget.dart';
+import 'dart:js';
+
+import 'package:first_desktop_app/models/note_database.dart';
+import 'package:first_desktop_app/pages/home_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  // initialize the note_database
+  WidgetsFlutterBinding.ensureInitialized();
+  await NoteDatabase.initialize();
+
+  runApp(ChangeNotifierProvider(
+    create: (context) => NoteDatabase(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
