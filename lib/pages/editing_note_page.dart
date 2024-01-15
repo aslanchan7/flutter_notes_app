@@ -28,11 +28,14 @@ class _EditingNotePageState extends State<EditingNotePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            createNote(
-                _titleController.text == ""
-                    ? "No Title"
-                    : _titleController.text,
-                _quillController.getPlainText());
+            if (_quillController.document.toPlainText() != "" ||
+                _titleController.text != "") {
+              createNote(
+                  _titleController.text == ""
+                      ? "No Title"
+                      : _titleController.text,
+                  _quillController.getPlainText());
+            }
             Navigator.pop(context);
           },
         ),
