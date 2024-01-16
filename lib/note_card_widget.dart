@@ -1,5 +1,6 @@
 import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
+import 'package:first_desktop_app/pages/editing_note_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,7 @@ class NoteCardGrid extends StatefulWidget {
 }
 
 class _NoteCardGridState extends State<NoteCardGrid> {
+  // Delete Note
   void deleteNote(int id) {
     context.read<NoteDatabase>().deleteNote(id);
   }
@@ -29,7 +31,14 @@ class _NoteCardGridState extends State<NoteCardGrid> {
                   deleteNote(widget.note.id);
                 },
                 onTap: () {
-                  print("Hello World");
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditingNotePage(
+                        note: widget.note,
+                      ),
+                    ),
+                  );
                 },
               ),
             ),

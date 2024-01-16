@@ -1,10 +1,12 @@
+import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:provider/provider.dart';
 
 class EditingNotePage extends StatefulWidget {
-  const EditingNotePage({super.key});
+  final Note? note;
+  const EditingNotePage({super.key, this.note});
 
   @override
   State<EditingNotePage> createState() => _EditingNotePageState();
@@ -14,14 +16,27 @@ class _EditingNotePageState extends State<EditingNotePage> {
   final QuillController _quillController = QuillController.basic();
   final TextEditingController _titleController = TextEditingController();
 
-  // create note
+  // Create Note
   void createNote(String title, String text) {
-    // add to db
+    // Add to DB
     context.read<NoteDatabase>().addNote(title, text);
+  }
+
+  // Update Note
+  void updateNote(int id, String newTitle, String newText) {
+    context.read<NoteDatabase>().updateNote(id, newTitle, newText);
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.note != null) {
+      String existingText = widget.note!.text;
+      _titleController.text =
+          widget.note!.title == "No Title" ? "" : widget.note!.title;
+      _quillController.document = Document.fromJson([
+        {'insert': existingText}
+      ]);
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple.shade100,
@@ -30,11 +45,22 @@ class _EditingNotePageState extends State<EditingNotePage> {
           onPressed: () {
             if (_quillController.document.toPlainText() != "" ||
                 _titleController.text != "") {
-              createNote(
+              if (widget.note == null) {
+                createNote(
                   _titleController.text == ""
                       ? "No Title"
                       : _titleController.text,
-                  _quillController.getPlainText());
+                  _quillController.document.toPlainText(),
+                );
+              } else {
+                updateNote(
+                  widget.note!.id,
+                  _titleController.text == ""
+                      ? "No Title"
+                      : _titleController.text,
+                  _quillController.document.toPlainText(),
+                );
+              }
             }
             Navigator.pop(context);
           },
