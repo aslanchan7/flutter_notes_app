@@ -43,7 +43,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            if (_quillController.document.toPlainText() != "" ||
+            if (_quillController.document.toPlainText() != "\n" ||
                 _titleController.text != "") {
               if (widget.note == null) {
                 createNote(

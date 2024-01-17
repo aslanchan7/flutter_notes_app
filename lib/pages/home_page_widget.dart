@@ -99,14 +99,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         // Get individual note
                         final note = currentNotes[index];
 
-                        return NoteCardGrid(
-                          note: note,
-                        );
+                        return NoteCardGrid(note: note);
                       },
                     )
                   : ListView.builder(
-                      itemCount: 12,
-                      itemBuilder: (context, index) => NoteCardList(),
+                      itemCount: currentNotes.length,
+                      itemBuilder: (context, index) {
+                        final note = currentNotes[index];
+
+                        return NoteCardList(note: note);
+                      },
                     ),
             ),
           ),

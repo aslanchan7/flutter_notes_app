@@ -51,13 +51,19 @@ class _NoteCardGridState extends State<NoteCardGrid> {
 }
 
 class NoteCardList extends StatefulWidget {
-  const NoteCardList({super.key});
+  final Note note;
+  const NoteCardList({super.key, required this.note});
 
   @override
   State<NoteCardList> createState() => NoteCardListState();
 }
 
 class NoteCardListState extends State<NoteCardList> {
+  // Delete Note
+  void deleteNote(int id) {
+    context.read<NoteDatabase>().deleteNote(id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,13 +76,31 @@ class NoteCardListState extends State<NoteCardList> {
       ),
       child: InkWell(
         onTap: () {
-          print("Hello World");
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => EditingNotePage(
+                note: widget.note,
+              ),
+            ),
+          );
         },
-        child: const Padding(
-          padding: EdgeInsets.only(left: 10),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text("Note Title"),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(widget.note.title),
+              ),
+              IconButton(
+                onPressed: () {
+                  deleteNote(widget.note.id);
+                },
+                icon: const Icon(Icons.delete),
+              ),
+            ],
           ),
         ),
       ),
