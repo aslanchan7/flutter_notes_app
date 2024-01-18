@@ -1,8 +1,6 @@
-import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/user_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
 
 class NotesViewProvider with ChangeNotifier {
   static late Isar isar;
@@ -10,7 +8,6 @@ class NotesViewProvider with ChangeNotifier {
 
   // Initialize
   static Future<void> initialize() async {
-    final dir = await getApplicationDocumentsDirectory();
     isar = Isar.getInstance()!;
     if (await isar.userSettings.get(0) == null) {
       UserSettings newUserSettings = UserSettings()..isNotesGridView = true;
