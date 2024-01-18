@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
+import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/editing_note_page.dart';
 import 'package:first_desktop_app/note_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +16,23 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  bool isCurrentNotesGridView = true; // Bug fix here
+  // bool isCurrentNotesGridView = true; // Bug fix here
 
-  void toggleNotesView() {
-    isCurrentNotesGridView = !isCurrentNotesGridView;
-    setState(() {});
-  }
+  // void toggleNotesView() {
+  //   isCurrentNotesGridView = !isCurrentNotesGridView;
+  //   setState(() {});
+  // }
 
   void readNotes() {
     context.read<NoteDatabase>().fetchNotes();
+  }
+
+  void readUserSettings() {
+    context.read<NotesViewProvider>().readUserSettings();
+  }
+
+  void toggleNotesView() {
+    context.read<NotesViewProvider>().toggleNotesView();
   }
 
   @override
@@ -31,6 +40,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     super.initState();
 
     readNotes();
+    readUserSettings();
   }
 
   @override
@@ -40,6 +50,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
     // Current Notes
     List<Note> currentNotes = noteDatabase.currentNotes;
+
+    // User Settings Database
+    final userSettings = context.watch<NotesViewProvider>();
+
+    // Current Notes View
+    bool isCurrentNotesGridView = userSettings.isCurrentNotesGridView;
 
     return Scaffold(
       // Add note with floating action button
@@ -74,7 +90,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   ),
                 ),
                 IconButton(
-                  onPressed: toggleNotesView,
+                  onPressed: () => toggleNotesView(),
                   icon: isCurrentNotesGridView
                       ? const Icon(Icons.grid_on)
                       : const Icon(Icons.list_alt),

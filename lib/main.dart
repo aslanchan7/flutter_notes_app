@@ -1,4 +1,5 @@
 import 'package:first_desktop_app/models/note_database.dart';
+import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/home_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -8,11 +9,20 @@ void main() async {
   // initialize the note_database
   WidgetsFlutterBinding.ensureInitialized();
   await NoteDatabase.initialize();
+  await NotesViewProvider.initialize();
 
-  runApp(ChangeNotifierProvider(
-    create: (context) => NoteDatabase(),
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        // Notes Provider
+        ChangeNotifierProvider(create: (context) => NoteDatabase()),
+
+        // Notes View Provider
+        ChangeNotifierProvider(create: (context) => NotesViewProvider())
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

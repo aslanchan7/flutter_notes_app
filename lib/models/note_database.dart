@@ -1,4 +1,5 @@
 import 'package:first_desktop_app/models/note.dart';
+import 'package:first_desktop_app/models/user_settings.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
@@ -9,7 +10,8 @@ class NoteDatabase extends ChangeNotifier {
   // initialize
   static Future<void> initialize() async {
     final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open([NoteSchema], directory: dir.path);
+    isar =
+        await Isar.open([NoteSchema, UserSettingsSchema], directory: dir.path);
   }
 
   // list of notes
