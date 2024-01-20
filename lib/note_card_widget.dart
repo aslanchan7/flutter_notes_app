@@ -2,6 +2,7 @@ import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/pages/editing_note_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:provider/provider.dart';
 
 class NoteCardGrid extends StatefulWidget {
@@ -23,25 +24,41 @@ class _NoteCardGridState extends State<NoteCardGrid> {
     return Column(
       children: [
         Expanded(
-          child: Container(
-            width: 200,
-            child: Card(
-              child: InkWell(
-                onSecondaryTap: () {
-                  deleteNote(widget.note.id);
-                },
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditingNotePage(
-                        note: widget.note,
-                      ),
-                    ),
-                  );
-                },
+          child: Stack(
+            alignment: AlignmentDirectional.topEnd,
+            children: [
+              Container(
+                width: 200,
+                child: Card(
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditingNotePage(
+                            note: widget.note,
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
+              PopupMenuButton(
+                iconSize: kDefaultIconSize,
+                onSelected: (value) {
+                  if (value == "Delete") {
+                    deleteNote(widget.note.id);
+                  }
+                },
+                itemBuilder: (context) => <PopupMenuEntry>[
+                  const PopupMenuItem(
+                    value: "Delete",
+                    child: Text("Delete"),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
         Text(widget.note.title),
