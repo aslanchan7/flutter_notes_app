@@ -74,7 +74,16 @@ class _NoteCardGridState extends State<NoteCardGrid> {
             ],
           ),
         ),
-        Text(truncate(widget.note.title)),
+        Container(
+          width: 150,
+          child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              widget.note.title,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -120,9 +129,15 @@ class NoteCardListState extends State<NoteCardList> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(widget.note.title),
+              Container(
+                width: 300,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.note.title,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ),
               IconButton(
                 onPressed: () {
