@@ -7,4 +7,5 @@ class Note {
   Id id = Isar.autoIncrement;
   late String title;
   late String text;
+  late DateTime lastModified;
 }

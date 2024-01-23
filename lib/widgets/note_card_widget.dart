@@ -19,19 +19,6 @@ class _NoteCardGridState extends State<NoteCardGrid> {
     context.read<NoteDatabase>().deleteNote(id);
   }
 
-  // Truncate Note Title
-  String truncate(String s) {
-    if (s.length >= 15) {
-      String returnString = "";
-      for (var i = 0; i < 15; i++) {
-        returnString += s[i];
-      }
-      return "$returnString...";
-    } else {
-      return s;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(

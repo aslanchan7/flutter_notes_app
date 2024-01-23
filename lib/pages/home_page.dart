@@ -4,18 +4,18 @@ import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/editing_note_page.dart';
-import 'package:first_desktop_app/note_card_widget.dart';
+import 'package:first_desktop_app/widgets/note_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _HomePageState extends State<HomePage> {
   // bool isCurrentNotesGridView = true; // Bug fix here
 
   // void toggleNotesView() {

@@ -1,6 +1,6 @@
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/models/notes_view_provider.dart';
-import 'package:first_desktop_app/pages/home_page_widget.dart';
+import 'package:first_desktop_app/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +54,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
-    HomePageWidget(),
+    HomePage(),
     Text("Profile Page"),
   ];
 
