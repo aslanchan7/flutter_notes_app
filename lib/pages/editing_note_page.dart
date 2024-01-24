@@ -53,13 +53,17 @@ class _EditingNotePageState extends State<EditingNotePage> {
                   _quillController.document.toPlainText(),
                 );
               } else {
-                updateNote(
-                  widget.note!.id,
-                  _titleController.text == ""
-                      ? "No Title"
-                      : _titleController.text,
-                  _quillController.document.toPlainText(),
-                );
+                if (_titleController.text != widget.note!.title ||
+                    _quillController.document.toPlainText() !=
+                        widget.note!.text) {
+                  updateNote(
+                    widget.note!.id,
+                    _titleController.text == ""
+                        ? "No Title"
+                        : _titleController.text,
+                    _quillController.document.toPlainText(),
+                  );
+                }
               }
             }
             Navigator.pop(context);
