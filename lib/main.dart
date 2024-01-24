@@ -1,6 +1,7 @@
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/home_page.dart';
+import 'package:first_desktop_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -34,10 +35,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: ThemeMode.dark,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -71,10 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
-          child: Text("Notes App"),
+          child: Text(
+            "Notes App",
+            style: TextStyle(),
+          ),
         ),
       ),
       body: Row(
@@ -84,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               // constraints: const BoxConstraints(maxWidth: 200, minWidth: 100),
               width: 200,
-              color: Colors.deepPurple.shade50,
+              color: Theme.of(context).colorScheme.secondary,
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
@@ -93,7 +96,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: const Text(
                       "Navigation Panel",
                       style: TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   ListTile(

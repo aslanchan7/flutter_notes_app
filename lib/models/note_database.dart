@@ -8,21 +8,16 @@ class NoteDatabase extends ChangeNotifier {
   static late Isar isar;
 
   /// Initialize database
-  ///
-  /// This opens the database
   static Future<void> initialize() async {
     final dir = await getApplicationDocumentsDirectory();
     isar =
         await Isar.open([NoteSchema, UserSettingsSchema], directory: dir.path);
   }
 
-  // List of notes
+  /// List of current notes
   final List<Note> currentNotes = [];
 
-  /// Create note and writes it to the database
-  ///
-  /// [title] Title of the new note.
-  /// [textFromUser] Content of the new note.
+  /// Create note and writes it to the database.
   Future<void> addNote(String title, String textFromUser) async {
     Note newNote = Note();
     newNote.title = title;
@@ -43,11 +38,9 @@ class NoteDatabase extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Updates note to database
+  /// Updates note to database.
   ///
-  /// [id] ID of the note.
-  /// [newTitle] The updated title of the edited note.
-  /// [newText] The updated content of the edited note.
+  /// Uses [id], [newTitle], [newText] to update the note.
   Future<void> updateNote(int id, String newTitle, String newText) async {
     final existingNote = await isar.notes.get(id);
     if (existingNote != null) {
@@ -65,9 +58,7 @@ class NoteDatabase extends ChangeNotifier {
     await fetchNotes();
   }
 
-  /// Sorts notes with most recently modified first.
-  ///
-  /// [notes] List of notes to sort.
+  /// Sorts [notes] with most recently modified first.
   void sortByLastModified(List<Note> notes, int beginIndex, int endIndex) {
     if (beginIndex < endIndex) {
       int partitionIndex = partition(notes, beginIndex, endIndex);

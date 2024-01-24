@@ -16,13 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // bool isCurrentNotesGridView = true; // Bug fix here
-
-  // void toggleNotesView() {
-  //   isCurrentNotesGridView = !isCurrentNotesGridView;
-  //   setState(() {});
-  // }
-
   void readNotes() {
     context.read<NoteDatabase>().fetchNotes();
   }
@@ -58,6 +51,7 @@ class _HomePageState extends State<HomePage> {
     bool isCurrentNotesGridView = userSettings.isCurrentNotesGridView;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       // Add note with floating action button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
