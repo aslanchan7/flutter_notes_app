@@ -1,6 +1,7 @@
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/home_page.dart';
+import 'package:first_desktop_app/pages/profile_page.dart';
 import 'package:first_desktop_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -55,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    Text("Profile Page"),
+    ProfilePage(),
   ];
 
   bool sideBarActivated(BuildContext context) =>
@@ -76,7 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
           padding: EdgeInsets.symmetric(vertical: 8),
           child: Text(
             "Notes App",
-            style: TextStyle(),
+            style: TextStyle(
+              color: Color(0xFF8b8b8b),
+            ),
           ),
         ),
       ),
@@ -98,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
+                        color: Color(0xFF8b8b8b),
                       ),
                     ),
                   ),
@@ -105,6 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: const Text("All Notes"),
                     leading: const Icon(Icons.notes),
                     selected: _selectedIndex == 0,
+                    iconColor: Theme.of(context).colorScheme.onBackground,
+                    textColor: Theme.of(context).colorScheme.onBackground,
+                    selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
                       _onItemTapped(0);
                     },
@@ -113,6 +120,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: const Text("Profile"),
                     leading: const Icon(Icons.person),
                     selected: _selectedIndex == 1,
+                    iconColor: Theme.of(context).colorScheme.onBackground,
+                    textColor: Theme.of(context).colorScheme.onBackground,
+                    selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
                       _onItemTapped(1);
                     },

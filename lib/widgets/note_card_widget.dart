@@ -68,6 +68,9 @@ class _NoteCardGridState extends State<NoteCardGrid> {
             child: Text(
               widget.note.title,
               overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: Color(0xFF8b8b8b),
+              ),
             ),
           ),
         ),
@@ -123,6 +126,7 @@ class NoteCardListState extends State<NoteCardList> {
                   child: Text(
                     widget.note.title,
                     overflow: TextOverflow.ellipsis,
+                    style: TextStyle(color: Color(0xFF8b8b8b)),
                   ),
                 ),
               ),
@@ -130,7 +134,10 @@ class NoteCardListState extends State<NoteCardList> {
                 onPressed: () {
                   deleteNote(widget.note.id);
                 },
-                icon: const Icon(Icons.delete),
+                icon: const Icon(
+                  Icons.delete,
+                  color: Color(0xFF8b8b8b),
+                ),
               ),
             ],
           ),

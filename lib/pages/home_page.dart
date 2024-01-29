@@ -80,14 +80,21 @@ class _HomePageState extends State<HomePage> {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
+                      color: Color(0xFF8b8b8b),
                     ),
                   ),
                 ),
                 IconButton(
                   onPressed: () => toggleNotesView(),
                   icon: isCurrentNotesGridView
-                      ? const Icon(Icons.grid_on)
-                      : const Icon(Icons.list_alt),
+                      ? const Icon(
+                          Icons.grid_on,
+                          color: Color(0xFF8b8b8b),
+                        )
+                      : const Icon(
+                          Icons.list_alt,
+                          color: Color(0xFF8b8b8b),
+                        ),
                 )
               ],
             ),
