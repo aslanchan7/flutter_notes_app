@@ -1,16 +1,3 @@
-# first_desktop_app
+# Notes App
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Notes App is a project that I started because I could not find a note-taking app that fit my aesthetic and minimal style for my laptop. This project is designed to allow users to create, delete, and update notes. This app is lightweight and does all that I need a note-taking app to do.
