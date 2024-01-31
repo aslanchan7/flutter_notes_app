@@ -12,9 +12,19 @@ ThemeData lightTheme = ThemeData(
 ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   colorScheme: const ColorScheme.dark(
-      background: Color(0xFF121212),
-      onBackground: Color(0xFF8b8b8b),
-      primary: Color(0xFF282828),
-      secondary: Color(0xFF575757),
-      tertiary: Color(0xFF)),
+    primary: Color(0xFFBB86FC),
+    secondary: Color(0xFF03DAC6),
+    background: Color(0xFF121212),
+    surface: Color(0xFF121212),
+    error: Color(0xFFCF6679),
+    onPrimary: Color(0xFF000000),
+    onSecondary: Color(0xFF000000),
+    onBackground: Color(0xFFFFFFFF),
+    onSurface: Color(0xFFFFFFFF),
+    onError: Color(0xFF000000),
+    surfaceVariant: Color(0xFF1A1A1A),
+  ),
+  appBarTheme: AppBarTheme(
+    backgroundColor: Color(0xFF1E1E1E),
+  ),
 );

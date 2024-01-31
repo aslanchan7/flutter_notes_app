@@ -72,13 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Text(
             "Notes App",
             style: TextStyle(
-              color: Color(0xFF8b8b8b),
+              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.87),
             ),
           ),
         ),
@@ -90,18 +90,21 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               // constraints: const BoxConstraints(maxWidth: 200, minWidth: 100),
               width: 200,
-              color: Theme.of(context).colorScheme.secondary,
+              color: Theme.of(context).colorScheme.surfaceVariant,
               child: ListView(
                 padding: EdgeInsets.zero,
                 children: [
                   Container(
                     padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-                    child: const Text(
+                    child: Text(
                       "Navigation Panel",
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF8b8b8b),
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.60),
                       ),
                     ),
                   ),
@@ -109,8 +112,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: const Text("All Notes"),
                     leading: const Icon(Icons.notes),
                     selected: _selectedIndex == 0,
-                    iconColor: Theme.of(context).colorScheme.onBackground,
-                    textColor: Theme.of(context).colorScheme.onBackground,
+                    iconColor: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withOpacity(0.38),
+                    textColor: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withOpacity(0.38),
                     selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
                       _onItemTapped(0);
@@ -120,8 +129,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     title: const Text("Profile"),
                     leading: const Icon(Icons.person),
                     selected: _selectedIndex == 1,
-                    iconColor: Theme.of(context).colorScheme.onBackground,
-                    textColor: Theme.of(context).colorScheme.onBackground,
+                    iconColor: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withOpacity(0.38),
+                    textColor: Theme.of(context)
+                        .colorScheme
+                        .onSurface
+                        .withOpacity(0.38),
                     selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
                       _onItemTapped(1);
