@@ -30,6 +30,7 @@ class _NoteCardGridState extends State<NoteCardGrid> {
               Container(
                 width: 200,
                 child: Card(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -45,6 +46,10 @@ class _NoteCardGridState extends State<NoteCardGrid> {
                 ),
               ),
               PopupMenuButton(
+                iconColor: Theme.of(context)
+                    .colorScheme
+                    .onBackground
+                    .withOpacity(0.60),
                 iconSize: kDefaultIconSize,
                 onSelected: (value) {
                   if (value == "Delete") {
@@ -52,9 +57,16 @@ class _NoteCardGridState extends State<NoteCardGrid> {
                   }
                 },
                 itemBuilder: (context) => <PopupMenuEntry>[
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: "Delete",
-                    child: Text("Delete"),
+                    child: Text(
+                      "Delete",
+                      style: TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.60)),
+                    ),
                   ),
                 ],
               )

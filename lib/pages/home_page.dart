@@ -75,26 +75,36 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   alignment: Alignment.centerLeft,
                   height: 50,
-                  child: const Text(
+                  child: Text(
                     "All Notes",
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF8b8b8b),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .onBackground
+                          .withOpacity(0.60),
                     ),
                   ),
                 ),
                 IconButton(
                   onPressed: () => toggleNotesView(),
                   icon: isCurrentNotesGridView
-                      ? const Icon(
+                      ? Icon(
                           Icons.grid_on,
-                          color: Color(0xFF8b8b8b),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.60),
                         )
-                      : const Icon(
+                      : Icon(
                           Icons.list_alt,
-                          color: Color(0xFF8b8b8b),
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.60),
                         ),
+                  tooltip: "Change Notes View",
                 )
               ],
             ),

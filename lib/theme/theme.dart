@@ -24,7 +24,7 @@ ThemeData darkTheme = ThemeData(
     onError: Color(0xFF000000),
     surfaceVariant: Color(0xFF1A1A1A),
   ),
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFF1E1E1E),
   ),
 );
