@@ -30,6 +30,7 @@ class _NoteCardGridState extends State<NoteCardGrid> {
               Container(
                 width: 200,
                 child: Card(
+                  elevation: 0,
                   color: Theme.of(context).colorScheme.surfaceVariant,
                   child: InkWell(
                     onTap: () {
