@@ -39,9 +39,12 @@ class _EditingNotePageState extends State<EditingNotePage> {
     }
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple.shade100,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.60),
+          ),
           onPressed: () {
             if (_quillController.document.toPlainText() != "\n" ||
                 _titleController.text != "") {
@@ -72,6 +75,9 @@ class _EditingNotePageState extends State<EditingNotePage> {
         title: TextField(
           controller: _titleController,
           textAlignVertical: TextAlignVertical.top,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.87),
+          ),
           decoration: const InputDecoration(
             border: InputBorder.none,
             hintText: "(No title)",
@@ -87,13 +93,41 @@ class _EditingNotePageState extends State<EditingNotePage> {
               child: QuillToolbar.simple(
                 configurations: QuillSimpleToolbarConfigurations(
                   controller: _quillController,
+                  buttonOptions: QuillSimpleToolbarButtonOptions(
+                    base: QuillToolbarBaseButtonOptions(
+                      iconTheme: QuillIconTheme(
+                        iconButtonUnselectedData: IconButtonData(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSurface
+                              .withOpacity(0.67),
+                        ),
+                      ),
+                    ),
+                    fontFamily: QuillToolbarFontFamilyButtonOptions(
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.67),
+                      ),
+                    ),
+                    fontSize: QuillToolbarFontSizeButtonOptions(
+                      style: TextStyle(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withOpacity(0.67),
+                      ),
+                    ),
+                  ),
                   showSearchButton: false,
                   showLink: false,
                   showQuote: false,
                   showHeaderStyle: false,
                   multiRowsDisplay: false,
                   showDividers: true,
-                  color: Colors.deepPurple.shade100,
+                  color: Theme.of(context).appBarTheme.backgroundColor,
                 ),
               ),
             ),

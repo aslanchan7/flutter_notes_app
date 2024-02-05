@@ -24,6 +24,7 @@ ThemeData darkTheme = ThemeData(
     onError: Color(0xFF000000),
     surfaceVariant: Color(0xFF1A1A1A),
   ),
+  canvasColor: const Color(0xFFFFFFFF).withOpacity(0.67),
   appBarTheme: const AppBarTheme(
     backgroundColor: Color(0xFF1E1E1E),
   ),
