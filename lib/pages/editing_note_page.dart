@@ -76,7 +76,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
           controller: _titleController,
           textAlignVertical: TextAlignVertical.top,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface.withOpacity(0.87),
+            color: Theme.of(context).colorScheme.onBackground.withOpacity(0.87),
           ),
           decoration: const InputDecoration(
             border: InputBorder.none,
@@ -86,6 +86,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
       ),
       body: Column(
         children: [
+          // Toolbar
           Expanded(
             flex: 1,
             child: Container(
@@ -99,7 +100,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                         iconButtonUnselectedData: IconButtonData(
                           color: Theme.of(context)
                               .colorScheme
-                              .onSurface
+                              .onBackground
                               .withOpacity(0.67),
                         ),
                       ),
@@ -108,7 +109,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                       style: TextStyle(
                         color: Theme.of(context)
                             .colorScheme
-                            .onSurface
+                            .onBackground
                             .withOpacity(0.67),
                       ),
                     ),
@@ -116,7 +117,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                       style: TextStyle(
                         color: Theme.of(context)
                             .colorScheme
-                            .onSurface
+                            .onBackground
                             .withOpacity(0.67),
                       ),
                     ),
@@ -126,12 +127,13 @@ class _EditingNotePageState extends State<EditingNotePage> {
                   showQuote: false,
                   showHeaderStyle: false,
                   multiRowsDisplay: false,
-                  showDividers: true,
+                  showDividers: false,
                   color: Theme.of(context).appBarTheme.backgroundColor,
                 ),
               ),
             ),
           ),
+          // Text Editor
           Expanded(
             flex: 10,
             child: Container(
@@ -144,7 +146,7 @@ class _EditingNotePageState extends State<EditingNotePage> {
                   topLeft: Radius.circular(10),
                   topRight: Radius.circular(10),
                 ),
-                color: Colors.grey.shade200,
+                color: Theme.of(context).colorScheme.secondaryContainer,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(25.0),
@@ -152,6 +154,19 @@ class _EditingNotePageState extends State<EditingNotePage> {
                   configurations: QuillEditorConfigurations(
                     controller: _quillController,
                     showCursor: true,
+                    customStyles: DefaultStyles(
+                      paragraph: DefaultTextBlockStyle(
+                        TextStyle(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.80),
+                        ),
+                        const VerticalSpacing(0, 0),
+                        const VerticalSpacing(0, 0),
+                        null,
+                      ),
+                    ),
                   ),
                 ),
               ),

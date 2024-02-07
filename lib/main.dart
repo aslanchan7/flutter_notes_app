@@ -78,7 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text(
             "Notes App",
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(0.87),
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.87),
             ),
           ),
         ),
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context)
                             .colorScheme
-                            .onSurface
+                            .onBackground
                             .withOpacity(0.60),
                       ),
                     ),
@@ -114,11 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     selected: _selectedIndex == 0,
                     iconColor: Theme.of(context)
                         .colorScheme
-                        .onSurface
+                        .onBackground
                         .withOpacity(0.38),
                     textColor: Theme.of(context)
                         .colorScheme
-                        .onSurface
+                        .onBackground
                         .withOpacity(0.38),
                     selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
@@ -131,11 +132,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     selected: _selectedIndex == 1,
                     iconColor: Theme.of(context)
                         .colorScheme
-                        .onSurface
+                        .onBackground
                         .withOpacity(0.38),
                     textColor: Theme.of(context)
                         .colorScheme
-                        .onSurface
+                        .onBackground
                         .withOpacity(0.38),
                     selectedColor: Theme.of(context).colorScheme.primary,
                     onTap: () {
