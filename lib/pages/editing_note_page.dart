@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
+import 'package:flutter_quill/quill_delta.dart';
 import 'package:provider/provider.dart';
 
 class EditingNotePage extends StatefulWidget {
@@ -30,12 +33,10 @@ class _EditingNotePageState extends State<EditingNotePage> {
   @override
   Widget build(BuildContext context) {
     if (widget.note != null) {
-      String existingText = widget.note!.text;
+      final existingText = jsonDecode(widget.note!.text);
       _titleController.text =
           widget.note!.title == "No Title" ? "" : widget.note!.title;
-      _quillController.document = Document.fromJson([
-        {'insert': existingText}
-      ]);
+      _quillController.document = Document.fromJson(existingText);
     }
     return Scaffold(
       appBar: AppBar(
@@ -53,18 +54,18 @@ class _EditingNotePageState extends State<EditingNotePage> {
                   _titleController.text == ""
                       ? "No Title"
                       : _titleController.text,
-                  _quillController.document.toPlainText(),
+                  jsonEncode(_quillController.document.toDelta().toJson()),
                 );
               } else {
                 if (_titleController.text != widget.note!.title ||
-                    _quillController.document.toPlainText() !=
+                    jsonEncode(_quillController.document.toDelta().toJson()) !=
                         widget.note!.text) {
                   updateNote(
                     widget.note!.id,
                     _titleController.text == ""
                         ? "No Title"
                         : _titleController.text,
-                    _quillController.document.toPlainText(),
+                    jsonEncode(_quillController.document.toDelta().toJson()),
                   );
                 }
               }
