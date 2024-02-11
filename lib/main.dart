@@ -3,6 +3,7 @@ import 'package:first_desktop_app/models/notes_view_provider.dart';
 import 'package:first_desktop_app/pages/home_page.dart';
 import 'package:first_desktop_app/pages/profile_page.dart';
 import 'package:first_desktop_app/theme/theme.dart';
+import 'package:first_desktop_app/theme/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,9 @@ void main() async {
         ChangeNotifierProvider(create: (context) => NoteDatabase()),
 
         // Notes View Provider
-        ChangeNotifierProvider(create: (context) => NotesViewProvider())
+        ChangeNotifierProvider(create: (context) => NotesViewProvider()),
+
+        ChangeNotifierProvider(create: (context) => ThemeProvider()),
       ],
       child: MyApp(),
     ),
@@ -36,8 +39,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      darkTheme: darkTheme,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       themeMode: ThemeMode.dark,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );

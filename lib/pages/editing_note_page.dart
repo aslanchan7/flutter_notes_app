@@ -4,7 +4,6 @@ import 'package:first_desktop_app/models/note.dart';
 import 'package:first_desktop_app/models/note_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
-import 'package:flutter_quill/quill_delta.dart';
 import 'package:provider/provider.dart';
 
 class EditingNotePage extends StatefulWidget {
